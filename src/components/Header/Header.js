@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header(props) {
+export default function(props) {
   return (
     <div>
       <h1>Real Estate</h1>
@@ -11,5 +11,3 @@ function Header(props) {
     </div>
   )
 }
-
-export default Header

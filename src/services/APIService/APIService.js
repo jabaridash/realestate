@@ -1,6 +1,4 @@
 import axios from 'axios'
-
-
 import config from './config'
 
 const HTTP_GET = "GET"
@@ -12,7 +10,7 @@ const defaultHeaders = {
 	"x-rapidapi-key": config.rapidApi.key,
 }
 
-class APIService {
+export default class APIService {
   post(form) {
     return axios({
       method: HTTP_GET,
@@ -27,5 +25,3 @@ class APIService {
     })
   }
 }
-
-export default APIService

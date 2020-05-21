@@ -1,6 +1,7 @@
 import React from 'react';
 import APIService from '../../services/APIService/APIService'
 import FileService from '../../services/FileService/FileService'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import states from './states'
 
 const initialFormState = {
@@ -145,22 +146,7 @@ function Button() {
   return <button type="submit" className="btn btn-primary">Submit</button>
 }
 
-function LoadingSpinner() {
-  const style = {
-    color: "#79bbb5",
-    padding: '1%',
-  }
-
-  return (
-    <div className='form-group'>
-      <div className="la-ball-clip-rotate" style={style}>
-        <div></div>
-      </div>
-    </div>
-  )
-}
-
-class Form extends React.Component {
+export default class Form extends React.Component {
   constructor(props) {
     super(props)
 
@@ -194,5 +180,3 @@ class Form extends React.Component {
     )
   }
 }
-
-export default Form
