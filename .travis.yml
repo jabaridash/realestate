@@ -10,6 +10,7 @@ cache:
   - node_modules
 
 before_script:
+  - ./env.sh
   - npm install -g firebase-tools
   - npm install
 
@@ -20,6 +21,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: firebase deploy --token "$FIREBASE_TOKEN" --non-interactive
+  script: firebase deploy --token "$FIREBASE_TOKEN" --non-interactive --only hosting
   on:
     branch: master

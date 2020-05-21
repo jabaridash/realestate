@@ -9,8 +9,6 @@ const defaultHeaders = {
 	"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
 }
 
-console.log(defaultHeaders)
-
 export default class APIService {
   post(form) {
     return axios({
