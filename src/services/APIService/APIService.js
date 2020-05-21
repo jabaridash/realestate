@@ -1,14 +1,15 @@
 import axios from 'axios'
-import config from './config'
 
 const HTTP_GET = "GET"
-const baseUrl = config.rapidApi.url
+const baseUrl = "https://realtor.p.rapidapi.com"
 const propertiesUrl = `${baseUrl}/properties`
 const listForSaleUrl = `${propertiesUrl}/list-for-sale`
 const defaultHeaders = {
-	"x-rapidapi-host": config.rapidApi.host,
-	"x-rapidapi-key": config.rapidApi.key,
+	"x-rapidapi-host": "realtor.p.rapidapi.com",
+	"x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
 }
+
+console.log(defaultHeaders)
 
 export default class APIService {
   post(form) {
