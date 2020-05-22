@@ -1,6 +1,2 @@
-node_modules
-build
 .dockerignore
 Dockerfile
-package-lock.json
-yarn.lock
