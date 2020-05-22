@@ -8,8 +8,6 @@ sudo: required
 services:
   - docker
 
-sudo: required
-
 cache:
   directories:
   - node_modules
