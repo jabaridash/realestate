@@ -5,6 +5,11 @@ node_js:
 
 sudo: required
 
+services:
+  - docker
+
+sudo: required
+
 cache:
   directories:
   - node_modules
@@ -17,6 +22,11 @@ before_script:
 script:
   - npm test
   - npm run build
+  - docker build -t jabaridash/realestate .
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push jabaridash/realestate
 
 deploy:
   skip_cleanup: true
