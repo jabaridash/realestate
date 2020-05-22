@@ -17,6 +17,7 @@ const initialFormState = {
     "farm": true,
     "land": true,
   },
+  is_contingent: true,
   price_min: 100000,
   price_max: 250000,
   beds_min: 1,
@@ -57,6 +58,27 @@ function onSubmit(event) {
   .then(this.fileService.downloadFile)
   .catch(error => alert("Oops, something went wrong"))
   .finally(() => this.setHidesLoadingSpinner(true))
+}
+
+function onIsContingentChange(event) {
+  let form = { ...this.state.form }
+  form[event.target.id] = !form[event.target.id]
+  this.setState({ form })
+}
+
+function IsContingentCheckbox() {
+  return (
+    <div key='is_contingent' className="form-check">
+      <input
+      type="checkbox"
+      className="form-check-input"
+      id='is_contingent'
+      onChange={this.onIsContingentChange}
+      checked={this.state.form['is_contingent']}
+      />
+      <label className="form-check-label">is_contingent</label>
+    </div>
+  )
 }
 
 function PropertyTypeSelector() {
@@ -156,7 +178,9 @@ export default class Form extends React.Component {
     this.onSubmit = onSubmit.bind(this)
     this.setHidesLoadingSpinner = setHidesLoadingSpinner.bind(this)
     this.onInputChange = onInputChange.bind(this)
+    this.onIsContingentChange = onIsContingentChange.bind(this)
     this.PropertyTypeSelector = PropertyTypeSelector.bind(this)
+    this.IsContingentCheckbox = IsContingentCheckbox.bind(this)
     this.SortSelector = SortSelector.bind(this)
     this.StateSelector = StateSelector.bind(this)
     this.LoadingSpinner = LoadingSpinner.bind(this)
@@ -172,6 +196,7 @@ export default class Form extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <this.PropertyTypeSelector/>
+        <this.IsContingentCheckbox/>
         <this.SortSelector/>
         <this.StateSelector/>
         <this.Inputs/>
