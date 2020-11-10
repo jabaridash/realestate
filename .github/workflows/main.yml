@@ -18,9 +18,6 @@ jobs:
         env:
           REACT_APP_RAPID_API_KEY: ${{ secrets.REACT_APP_RAPID_API_KEY }}
 
-      - name: Print key for testing
-        run: echo ${REACT_APP_RAPID_API_KEY}
-
       - name: Install Hosting Dependencies
         run: npm install
 
