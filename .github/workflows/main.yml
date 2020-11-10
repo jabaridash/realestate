@@ -1,0 +1,38 @@
+name: Build , Test, and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build , Test, and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@main
+
+      - name: Generate .env
+        run: echo "REACT_APP_RAPID_API_KEY=${REACT_APP_RAPID_API_KEY}" > .env
+        env:
+          REACT_APP_RAPID_API_KEY: ${{ secrets.REACT_APP_RAPID_API_KEY }}
+
+      - name: Print key for testing
+        run: echo ${REACT_APP_RAPID_API_KEY}
+
+      - name: Install Hosting Dependencies
+        run: npm install
+
+      - name: Test Hosting
+        run: npm test
+
+      - name: Build Hosting Artifact
+        run: npm run build
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy -m $GITHUB_SHA
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
